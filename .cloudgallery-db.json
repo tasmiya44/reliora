@@ -1,0 +1,465 @@
+{
+  "users": [
+    {
+      "_id": "admin",
+      "name": "CloudGallery Admin",
+      "email": "admin@cloudgallery.local",
+      "username": "admin",
+      "passwordHash": "scrypt:c8e2ac91e249032c8118f284c78eb6e9:afc42bec4358e385142a8b2d07c56a07dd9e091581623df8757767f815b21c8eb740e88c8db7c03b11cf00cacb70f929f7edf5b9d30c17f5da6328c2a6d7b677",
+      "role": "admin",
+      "createdAt": "2026-06-12T04:31:52.835Z"
+    },
+    {
+      "_id": "demo",
+      "name": "Demo User",
+      "email": "demo@cloudgallery.app",
+      "username": "demo",
+      "passwordHash": "scrypt:c43dfcb62c705ac5eddb1185ab8e292b:64a965128d0c34d030100e6b9ec403ce2c6b528772a6b9a85c112c5bd8ee95dd3727be3d1718a9270644f799edbb6abc96d30c922582d7bc9496de864d9887ea",
+      "role": "demo",
+      "createdAt": "2026-06-12T04:31:52.877Z"
+    },
+    {
+      "_id": "8310a5ba-6951-4730-8270-56e1c57ab0cc",
+      "name": "Tasmiya",
+      "email": "tasmiyaf772@gmail.com",
+      "username": "Tasmiya",
+      "passwordHash": "scrypt:78d77418c528035139383868e9b867af:f324d29e22b0dc63c4190038572f38cf647bd457501efe3060974c309686c244f244cea88c4cf1faf79b28f8f758d384788a1c00fd939b6a61d51e0b48c25d27",
+      "role": "admin",
+      "createdAt": "2026-06-12T04:49:54.276Z"
+    },
+    {
+      "_id": "4739b280-0839-461d-9a48-64e28f16e646",
+      "name": "Check User",
+      "email": "check1781260023974@example.com",
+      "username": "check1781260023974",
+      "passwordHash": "scrypt:dc8f5cfdf6ce26a4e28d564031d552d3:d0f5f62d1f39ee82927793f922a57c036c553981b9496af8489e99653bf49d0b5f561402337a4a85a3789465549da5626ae7d481df71dd7765c996c493dae096",
+      "role": "user",
+      "createdAt": "2026-06-12T10:27:04.317Z"
+    },
+    {
+      "_id": "b364fb80-6e92-49b1-a019-24a6ad06717d",
+      "name": "Reezo Test",
+      "email": "cg-reezo-test-1781373631@example.com",
+      "username": "cgreezo1781373631",
+      "passwordHash": "scrypt:490a63b3f9284665309461ccd37ade3d:ec2955015a8b71fe567331f06c62af941a85b9a069f72f997da497237831969395e6f95d8c402ff6e51b29d3c40b1ac0d1d38eb89851a0635875b1c9ee41e107",
+      "role": "user",
+      "createdAt": "2026-06-13T18:00:32.070Z"
+    },
+    {
+      "_id": "c9fdabf7-0970-491c-87f5-de70c03c7a43",
+      "name": "Delete Test",
+      "email": "cg-delete-test-1781374751@example.com",
+      "username": "cgdelete1781374751",
+      "passwordHash": "scrypt:f681e8702db484c0b77663c49a7a7d30:4a2e8786a258ca1e68ea404fdfed9a83230173beb8fc7c4c77cc21778e87bd4426378ac57a3b04da06f0d18ba9e7e9922b84fd3d141360938367054211aca8f6",
+      "role": "user",
+      "createdAt": "2026-06-13T18:19:11.333Z"
+    },
+    {
+      "_id": "89cf1a98-d112-4619-85ce-4d9f897ca4ea",
+      "name": "Google Smoke",
+      "email": "cg-google-smoke-1781440986@example.com",
+      "username": "cggsmoke1781440986",
+      "passwordHash": "scrypt:90694f4858a41da61ad07e945239889c:85777c631f52dbe07569e538d604282f9ac63e5c189bd9e7df1b2f6ab5935b6d71ef746e266e13c2802c3a6ab8afe07dbde746c043fa139b58ee73cc1db0c375",
+      "role": "user",
+      "createdAt": "2026-06-14T12:43:07.097Z",
+      "provider": "local"
+    },
+    {
+      "_id": "c4c6122d-dde6-4f52-95f3-d1c68cbe24e3",
+      "name": "Alia",
+      "email": "aliaaa0708@gmail.com",
+      "username": "alia",
+      "passwordHash": "scrypt:d80694287632f2ca5ae5f48ccee559e1:a65a34a76300c11050db8d9d6c8f35c2b5728da67735943a0e4d72fdce8a95f4e96517f9bb32a0cd074e7472afb9881c5bbf6f92d2d49c1247dbb045a580f89a",
+      "role": "user",
+      "createdAt": "2026-06-14T13:02:37.492Z",
+      "provider": "google",
+      "googleId": "110870602163392481712",
+      "avatar": "https://lh3.googleusercontent.com/a/ACg8ocJrt71HPAICMWT6q67ah_X95TUWGkCiXx1QXQ_535CCi34H1-vV=s96-c",
+      "emailVerified": true
+    }
+  ],
+  "folders": [
+    {
+      "_id": "661f7851-0667-4f28-9acb-82b2828a7ca8",
+      "userId": "admin",
+      "name": "scenery",
+      "createdAt": "2026-06-12T04:31:52.877Z"
+    },
+    {
+      "_id": "bf39910b-a23d-41c2-b027-667235e0f7ec",
+      "userId": "admin",
+      "name": "reezo",
+      "createdAt": "2026-06-12T04:31:52.877Z"
+    },
+    {
+      "_id": "7b3f8af9-0474-42d5-87af-d2ef9b0ad2e5",
+      "userId": "admin",
+      "name": "other",
+      "createdAt": "2026-06-12T04:31:52.877Z"
+    },
+    {
+      "_id": "e1922085-7fbe-474d-8918-676c61f15c69",
+      "userId": "demo",
+      "name": "scenery",
+      "createdAt": "2026-06-12T04:31:52.877Z"
+    },
+    {
+      "_id": "8ec1feaa-e375-48a8-b46a-fc4a8b8af52e",
+      "userId": "demo",
+      "name": "reezo",
+      "createdAt": "2026-06-12T04:31:52.877Z"
+    },
+    {
+      "_id": "70eb9e1a-767a-4d8d-b570-7a05b17f8b60",
+      "userId": "demo",
+      "name": "other",
+      "createdAt": "2026-06-12T04:31:52.877Z"
+    },
+    {
+      "_id": "493fd849-a776-4ea9-9b40-70fb74e4b9bf",
+      "userId": "demo",
+      "name": "quotes",
+      "createdAt": "2026-06-12T04:32:08.485Z"
+    },
+    {
+      "_id": "20ab8035-9f9e-47e3-8733-b981429fc8eb",
+      "userId": "8310a5ba-6951-4730-8270-56e1c57ab0cc",
+      "name": "other",
+      "createdAt": "2026-06-12T04:49:54.276Z",
+      "coverPhotoId": "f23a37b2-6000-4491-a193-e52473c11911"
+    },
+    {
+      "_id": "94b02914-acc3-46d1-b271-bcce244ae247",
+      "userId": "b364fb80-6e92-49b1-a019-24a6ad06717d",
+      "name": "reezo",
+      "createdAt": "2026-06-13T18:00:32.129Z",
+      "isUserCreated": true
+    }
+  ],
+  "photos": [
+    {
+      "userId": "demo",
+      "folderId": "70eb9e1a-767a-4d8d-b570-7a05b17f8b60",
+      "folderName": "other",
+      "filename": "1775435154084-ghibli (1).jpeg",
+      "s3Key": "other/1775435154084-ghibli (1).jpeg",
+      "thumbKey": "other/thumbnails/1775435154084-ghibli (1).jpeg",
+      "previewKey": "other/previews/1775435154084-ghibli (1).jpeg",
+      "size": 88144,
+      "_id": "983d0efd-3d80-4bdc-b4c2-33e3d5f4c81c",
+      "uploadedAt": "2026-06-12T04:32:08.475Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "493fd849-a776-4ea9-9b40-70fb74e4b9bf",
+      "folderName": "quotes",
+      "filename": "1775448374021-_ (7).jpeg",
+      "s3Key": "quotes/1775448374021-_ (7).jpeg",
+      "thumbKey": "quotes/thumbnails/1775448374021-_ (7).jpeg",
+      "previewKey": "quotes/previews/1775448374021-_ (7).jpeg",
+      "size": 70884,
+      "_id": "46e9c921-568c-4aef-8359-d0b0d0fd5c6f",
+      "uploadedAt": "2026-06-12T04:32:08.485Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "493fd849-a776-4ea9-9b40-70fb74e4b9bf",
+      "folderName": "quotes",
+      "filename": "1775448386612-_ (8).jpeg",
+      "s3Key": "quotes/1775448386612-_ (8).jpeg",
+      "thumbKey": "quotes/thumbnails/1775448386612-_ (8).jpeg",
+      "previewKey": "quotes/previews/1775448386612-_ (8).jpeg",
+      "size": 65466,
+      "_id": "121ecddf-bed7-40eb-8191-e81d081dc5b0",
+      "uploadedAt": "2026-06-12T04:32:08.485Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "493fd849-a776-4ea9-9b40-70fb74e4b9bf",
+      "folderName": "quotes",
+      "filename": "1775448420802-â¨.jpeg",
+      "s3Key": "quotes/1775448420802-â¨.jpeg",
+      "thumbKey": "quotes/thumbnails/1775448420802-â¨.jpeg",
+      "previewKey": "quotes/previews/1775448420802-â¨.jpeg",
+      "size": 67266,
+      "_id": "c125e659-9e14-4365-bfbb-f8356549308f",
+      "uploadedAt": "2026-06-12T04:32:08.486Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "493fd849-a776-4ea9-9b40-70fb74e4b9bf",
+      "folderName": "quotes",
+      "filename": "1775448507362-_ (10).jpeg",
+      "s3Key": "quotes/1775448507362-_ (10).jpeg",
+      "thumbKey": "quotes/thumbnails/1775448507362-_ (10).jpeg",
+      "previewKey": "quotes/previews/1775448507362-_ (10).jpeg",
+      "size": 57398,
+      "_id": "0ea9bf49-5f9f-4524-8e76-8b1d4ee95e3e",
+      "uploadedAt": "2026-06-12T04:32:08.486Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "493fd849-a776-4ea9-9b40-70fb74e4b9bf",
+      "folderName": "quotes",
+      "filename": "1775448560392-_ (11).jpeg",
+      "s3Key": "quotes/1775448560392-_ (11).jpeg",
+      "thumbKey": "quotes/thumbnails/1775448560392-_ (11).jpeg",
+      "previewKey": "quotes/previews/1775448560392-_ (11).jpeg",
+      "size": 37024,
+      "_id": "05f9c9c6-4fb0-43e6-b94c-2ef5c45023f5",
+      "uploadedAt": "2026-06-12T04:32:08.486Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "493fd849-a776-4ea9-9b40-70fb74e4b9bf",
+      "folderName": "quotes",
+      "filename": "1775599940964-ðª¼.jpeg",
+      "s3Key": "quotes/1775599940964-ðª¼.jpeg",
+      "thumbKey": "quotes/thumbnails/1775599940964-ðª¼.jpeg",
+      "previewKey": "quotes/previews/1775599940964-ðª¼.jpeg",
+      "size": 55469,
+      "_id": "c357953c-dd3e-463c-b716-8e5a4cf42b77",
+      "uploadedAt": "2026-06-12T04:32:08.487Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "493fd849-a776-4ea9-9b40-70fb74e4b9bf",
+      "folderName": "quotes",
+      "filename": "1777013181816-#words.jpeg",
+      "s3Key": "quotes/1777013181816-#words.jpeg",
+      "thumbKey": "quotes/thumbnails/1777013181816-#words.jpeg",
+      "previewKey": "quotes/previews/1777013181816-#words.jpeg",
+      "size": 143059,
+      "_id": "e545b082-3149-4c83-b61d-0dc82741727e",
+      "uploadedAt": "2026-06-12T04:32:08.488Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "8ec1feaa-e375-48a8-b46a-fc4a8b8af52e",
+      "folderName": "reezo",
+      "filename": "1775432076206-reezo.jpeg",
+      "s3Key": "reezo/1775432076206-reezo.jpeg",
+      "thumbKey": "reezo/1775432076206-reezo.jpeg",
+      "previewKey": "reezo/1775432076206-reezo.jpeg",
+      "size": 151387,
+      "_id": "a08c7ac5-4f63-4bf0-8729-b2b103e918f9",
+      "uploadedAt": "2026-06-12T04:32:08.488Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "8ec1feaa-e375-48a8-b46a-fc4a8b8af52e",
+      "folderName": "reezo",
+      "filename": "1775432472725-reezo1.jpeg",
+      "s3Key": "reezo/1775432472725-reezo1.jpeg",
+      "thumbKey": "reezo/1775432472725-reezo1.jpeg",
+      "previewKey": "reezo/1775432472725-reezo1.jpeg",
+      "size": 294968,
+      "_id": "7dd4207b-c1b0-4a43-83a5-ef404f1abf66",
+      "uploadedAt": "2026-06-12T04:32:08.489Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "8ec1feaa-e375-48a8-b46a-fc4a8b8af52e",
+      "folderName": "reezo",
+      "filename": "1775432482398-reezo2.jpeg",
+      "s3Key": "reezo/1775432482398-reezo2.jpeg",
+      "thumbKey": "reezo/1775432482398-reezo2.jpeg",
+      "previewKey": "reezo/1775432482398-reezo2.jpeg",
+      "size": 265175,
+      "_id": "96f3fe11-86c9-4464-9b5d-ba9c03e68520",
+      "uploadedAt": "2026-06-12T04:32:08.489Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "e1922085-7fbe-474d-8918-676c61f15c69",
+      "folderName": "scenery",
+      "filename": "151ff7bbbcdc403aa1c7ea2bef600b88.jpg",
+      "s3Key": "scenery/151ff7bbbcdc403aa1c7ea2bef600b88.jpg",
+      "thumbKey": "scenery/thumbnails/151ff7bbbcdc403aa1c7ea2bef600b88.jpg",
+      "previewKey": "scenery/previews/151ff7bbbcdc403aa1c7ea2bef600b88.jpg",
+      "size": 71977,
+      "_id": "d5dfbcff-e5fc-4578-be5c-746fb1d7c191",
+      "uploadedAt": "2026-06-12T04:32:08.490Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "e1922085-7fbe-474d-8918-676c61f15c69",
+      "folderName": "scenery",
+      "filename": "1775433455851-_.jpeg",
+      "s3Key": "scenery/1775433455851-_.jpeg",
+      "thumbKey": "scenery/1775433455851-_.jpeg",
+      "previewKey": "scenery/1775433455851-_.jpeg",
+      "size": 72331,
+      "_id": "e9da3260-d1ac-4869-8225-25125bbceedc",
+      "uploadedAt": "2026-06-12T04:32:08.490Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "e1922085-7fbe-474d-8918-676c61f15c69",
+      "folderName": "scenery",
+      "filename": "1775433509999-_ (5).jpeg",
+      "s3Key": "scenery/1775433509999-_ (5).jpeg",
+      "thumbKey": "scenery/1775433509999-_ (5).jpeg",
+      "previewKey": "scenery/1775433509999-_ (5).jpeg",
+      "size": 67877,
+      "_id": "97e371c4-9b0b-4384-a730-b0b6ef39da71",
+      "uploadedAt": "2026-06-12T04:32:08.490Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "e1922085-7fbe-474d-8918-676c61f15c69",
+      "folderName": "scenery",
+      "filename": "1775433516862-_ (4).jpeg",
+      "s3Key": "scenery/1775433516862-_ (4).jpeg",
+      "thumbKey": "scenery/1775433516862-_ (4).jpeg",
+      "previewKey": "scenery/1775433516862-_ (4).jpeg",
+      "size": 68526,
+      "_id": "d541c5b4-36cb-4d65-ba5f-50f3d4e9f848",
+      "uploadedAt": "2026-06-12T04:32:08.491Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "e1922085-7fbe-474d-8918-676c61f15c69",
+      "folderName": "scenery",
+      "filename": "1775433523872-_ (3).jpeg",
+      "s3Key": "scenery/1775433523872-_ (3).jpeg",
+      "thumbKey": "scenery/1775433523872-_ (3).jpeg",
+      "previewKey": "scenery/1775433523872-_ (3).jpeg",
+      "size": 56473,
+      "_id": "cc77880e-3dcf-467e-849f-233b045cb95c",
+      "uploadedAt": "2026-06-12T04:32:08.491Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "e1922085-7fbe-474d-8918-676c61f15c69",
+      "folderName": "scenery",
+      "filename": "1775433545842-_ (2).jpeg",
+      "s3Key": "scenery/1775433545842-_ (2).jpeg",
+      "thumbKey": "scenery/1775433545842-_ (2).jpeg",
+      "previewKey": "scenery/1775433545842-_ (2).jpeg",
+      "size": 84937,
+      "_id": "ddfa785e-2c5c-44d5-af57-bb79928b82df",
+      "uploadedAt": "2026-06-12T04:32:08.492Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "e1922085-7fbe-474d-8918-676c61f15c69",
+      "folderName": "scenery",
+      "filename": "1775433553741-_ (1).jpeg",
+      "s3Key": "scenery/1775433553741-_ (1).jpeg",
+      "thumbKey": "scenery/1775433553741-_ (1).jpeg",
+      "previewKey": "scenery/1775433553741-_ (1).jpeg",
+      "size": 75357,
+      "_id": "1fc71757-ce5d-41ed-b569-82a3346dbd30",
+      "uploadedAt": "2026-06-12T04:32:08.492Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "e1922085-7fbe-474d-8918-676c61f15c69",
+      "folderName": "scenery",
+      "filename": "1775438461823-_ (5).jpeg",
+      "s3Key": "scenery/1775438461823-_ (5).jpeg",
+      "thumbKey": "scenery/thumbnails/1775438461823-_ (5).jpeg",
+      "previewKey": "scenery/previews/1775438461823-_ (5).jpeg",
+      "size": 67877,
+      "_id": "ff54fb1e-4339-4b27-92b2-4bf8a7e91474",
+      "uploadedAt": "2026-06-12T04:32:08.492Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "e1922085-7fbe-474d-8918-676c61f15c69",
+      "folderName": "scenery",
+      "filename": "1776945443176-_ (12).jpeg",
+      "s3Key": "scenery/1776945443176-_ (12).jpeg",
+      "thumbKey": "scenery/thumbnails/1776945443176-_ (12).jpeg",
+      "previewKey": "scenery/previews/1776945443176-_ (12).jpeg",
+      "size": 66675,
+      "_id": "7554080a-f62f-42e1-aba8-83ff882332b4",
+      "uploadedAt": "2026-06-12T04:32:08.493Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "e1922085-7fbe-474d-8918-676c61f15c69",
+      "folderName": "scenery",
+      "filename": "c32aab1e101acac92e2bfcd7a372b223.webp",
+      "s3Key": "scenery/c32aab1e101acac92e2bfcd7a372b223.webp",
+      "thumbKey": "scenery/thumbnails/c32aab1e101acac92e2bfcd7a372b223.webp",
+      "previewKey": "scenery/previews/c32aab1e101acac92e2bfcd7a372b223.webp",
+      "size": 252604,
+      "_id": "bab96e44-fef0-49c1-bc72-cd3374ccdc6f",
+      "uploadedAt": "2026-06-12T04:32:08.493Z"
+    },
+    {
+      "userId": "8310a5ba-6951-4730-8270-56e1c57ab0cc",
+      "folderId": "20ab8035-9f9e-47e3-8733-b981429fc8eb",
+      "folderName": "other",
+      "filename": "1781262842816-reezo2.jpeg",
+      "s3Key": "users/8310a5ba-6951-4730-8270-56e1c57ab0cc/other/1781262842816-reezo2.jpeg",
+      "thumbKey": "users/8310a5ba-6951-4730-8270-56e1c57ab0cc/other/thumbnails/1781262842816-reezo2.jpeg",
+      "previewKey": "users/8310a5ba-6951-4730-8270-56e1c57ab0cc/other/previews/1781262842816-reezo2.jpeg",
+      "size": 265175,
+      "_id": "10207dfc-34ba-4d1d-9b58-27f79ce3c75c",
+      "uploadedAt": "2026-06-12T11:14:04.551Z"
+    },
+    {
+      "userId": "8310a5ba-6951-4730-8270-56e1c57ab0cc",
+      "folderId": "",
+      "folderName": "all",
+      "filename": "1781288187972-54F232D9-FDFD-4587-8145-0304431F258B.JPG",
+      "s3Key": "users/8310a5ba-6951-4730-8270-56e1c57ab0cc/reezo/1781288187972-54F232D9-FDFD-4587-8145-0304431F258B.JPG",
+      "thumbKey": "users/8310a5ba-6951-4730-8270-56e1c57ab0cc/reezo/thumbnails/1781288187972-54F232D9-FDFD-4587-8145-0304431F258B.JPG",
+      "previewKey": "users/8310a5ba-6951-4730-8270-56e1c57ab0cc/reezo/previews/1781288187972-54F232D9-FDFD-4587-8145-0304431F258B.JPG",
+      "size": 1228612,
+      "_id": "f23a37b2-6000-4491-a193-e52473c11911",
+      "uploadedAt": "2026-06-12T18:16:29.812Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "493fd849-a776-4ea9-9b40-70fb74e4b9bf",
+      "folderName": "quotes",
+      "filename": "1781348104650-0db1a9a930a02a926490f09c1252b6af.jpg",
+      "s3Key": "demo/quotes/1781348104650-0db1a9a930a02a926490f09c1252b6af.jpg",
+      "thumbKey": "demo/quotes/thumbnails/1781348104650-0db1a9a930a02a926490f09c1252b6af.jpg",
+      "previewKey": "demo/quotes/previews/1781348104650-0db1a9a930a02a926490f09c1252b6af.jpg",
+      "size": 59116,
+      "_id": "2b0b86d8-350e-4312-b699-a45d7b3cb9c1",
+      "uploadedAt": "2026-06-13T10:55:05.208Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "e1922085-7fbe-474d-8918-676c61f15c69",
+      "folderName": "scenery",
+      "filename": "1781348105456-7842f5e3eb0201ab6abb6a9b966e5a11.webp",
+      "s3Key": "demo/scenery/1781348105456-7842f5e3eb0201ab6abb6a9b966e5a11.webp",
+      "thumbKey": "demo/scenery/thumbnails/1781348105456-7842f5e3eb0201ab6abb6a9b966e5a11.webp",
+      "previewKey": "demo/scenery/previews/1781348105456-7842f5e3eb0201ab6abb6a9b966e5a11.webp",
+      "size": 268200,
+      "_id": "2b26819b-6df5-4ff6-9cee-b279f3cffb29",
+      "uploadedAt": "2026-06-13T10:55:06.178Z"
+    },
+    {
+      "userId": "demo",
+      "folderId": "70eb9e1a-767a-4d8d-b570-7a05b17f8b60",
+      "folderName": "other",
+      "filename": "1781348216281-d14aa85c70d3951e5dc8293e6b0e5e7c.jpg",
+      "s3Key": "demo/other/1781348216281-d14aa85c70d3951e5dc8293e6b0e5e7c.jpg",
+      "thumbKey": "demo/other/thumbnails/1781348216281-d14aa85c70d3951e5dc8293e6b0e5e7c.jpg",
+      "previewKey": "demo/other/previews/1781348216281-d14aa85c70d3951e5dc8293e6b0e5e7c.jpg",
+      "size": 40493,
+      "_id": "55d0f6d7-fe7b-43f9-851a-591299fbd1bb",
+      "uploadedAt": "2026-06-13T10:56:56.813Z"
+    }
+  ],
+  "favorites": [
+    {
+      "_id": "f3d126ba-2389-4d10-842a-af2938d38dae",
+      "userId": "demo",
+      "photoId": "55d0f6d7-fe7b-43f9-851a-591299fbd1bb"
+    },
+    {
+      "_id": "f0271a8f-363b-44c8-95b0-8a29b4fba848",
+      "userId": "8310a5ba-6951-4730-8270-56e1c57ab0cc",
+      "photoId": "10207dfc-34ba-4d1d-9b58-27f79ce3c75c"
+    }
+  ]
+}
