@@ -1,59 +1,70 @@
-# Cloud Photo Gallery with AWS S3
+# Reliora
 
-A full-stack cloud computing mini-project demonstrating the integration of a React frontend, Node.js backend, and AWS S3 for scalable image storage.
+Reliora is a full-stack photo gallery for storing, organizing, editing, and revisiting personal image collections. It uses a React frontend, an Express backend, MongoDB for gallery records, and AWS S3 for private image storage.
 
-## 🚀 Project Architecture
+## Features
 
-1.  **Frontend (React):** A modern, responsive UI built with Vite, Tailwind CSS, and Lucide icons. It handles user authentication state, file selection, and displays images fetched from the backend.
-2.  **Backend (Node.js/Express):** A RESTful API that manages registration, login, demo sessions, JWT authentication, folder/photo metadata, favorites, uploads, and ownership checks.
-3.  **MongoDB Metadata:** Stores users, folder metadata, photo metadata, favorites, and authentication data. If `MONGODB_URI` is not configured during local development, the app uses `.cloudgallery-db.json` as a fallback metadata store.
-4.  **Cloud Storage (AWS S3):** Stores the actual image files. The backend generates **Presigned URLs** to allow the frontend to securely display private S3 objects without making the bucket public.
-4.  **Security (IAM & JWT):**
-    *   **JWT:** Secures API endpoints so only logged-in users can upload or delete photos.
-    *   **IAM:** Uses Access Keys to grant the backend specific permissions (PutObject, GetObject, ListBucket, DeleteObject) on the S3 bucket.
+- Email/password authentication with JWT sessions
+- Google sign-in for new and existing users
+- Demo mode for read-only exploration
+- Private photo uploads and secure image viewing
+- Collections, favorites, recent photos, and trash views
+- Photo preview, selection, moving, deletion, and basic editing
+- Admin access for managing the demo gallery
 
-## 🛠️ AWS Setup Guide
+## Tech Stack
 
-1.  **Create S3 Bucket:**
-    *   Go to S3 Console -> "Create bucket".
-    *   Name it (e.g., `my-cloud-gallery-2024`).
-    *   Keep "Block all public access" **ON** (we use presigned URLs for security).
-2.  **Create IAM User:**
-    *   Go to IAM Console -> "Users" -> "Create user".
-    *   Name it `gallery-app-user`.
-    *   Attach policies directly: `AmazonS3FullAccess` (or create a custom policy restricted to your bucket).
-3.  **Generate Access Keys:**
-    *   Select the user -> "Security credentials" -> "Create access key".
-    *   Choose "Local code" and save the **Access Key ID** and **Secret Access Key**.
-4.  **Configure Environment:**
-    *   Copy `.env.example` to `.env`.
-    *   Fill in your AWS credentials and bucket name.
+- React, TypeScript, Vite, and Tailwind CSS
+- Node.js and Express
+- MongoDB Atlas
+- AWS S3
+- Google OAuth
 
-## 💻 Local Setup
+## Local Setup
 
-1.  **Install Dependencies:**
-    ```bash
-    npm install
-    ```
-2.  **Configure Environment Variables:**
-    Create a `.env` file based on `.env.example`. Set `MONGODB_URI` and `MONGODB_DB` for production-style multi-user metadata storage.
-3.  **Run Development Server:**
-    ```bash
-    npm run dev
-    ```
-    The app will be available at `http://localhost:3000`.
+1. Install dependencies:
 
-## 🧪 Testing the Project
+   ```bash
+   npm install
+   ```
 
-1.  **Login/Register/Demo:** Use the seeded admin credentials from `.env`, create a new account, or click **Try Demo**.
-2.  **Upload:** Registered users can select an image from the computer. It will be sent to the Express server, uploaded to S3 under `users/{userId}/{folder}/{filename}`, and recorded in metadata.
-3.  **View:** The gallery refreshes with user-specific photos using secure presigned URLs.
-4.  **Demo Mode:** Demo users can browse, preview, search, and view favorites, but upload/delete/folder management controls are disabled.
-5.  **Delete:** Click the trash icon to remove the image from both metadata and S3.
+2. Create a local environment file:
 
-## 🎓 Viva/Presentation Points
+   ```bash
+   cp .env.example .env
+   ```
 
-*   **Scalability:** AWS S3 provides virtually unlimited storage, making it superior to local server storage.
-*   **Security:** Explain how **Presigned URLs** work—they provide temporary access to private objects, ensuring images aren't exposed to the public internet.
-*   **Decoupling:** The frontend and backend are separate, allowing for independent scaling and maintenance.
-*   **Future Improvements:** Mention adding **AWS CloudFront** for faster global delivery (CDN) or **AWS Lambda** for automatic image resizing on upload.
+3. Fill in the required values in `.env`:
+
+   ```bash
+   AWS_ACCESS_KEY_ID=
+   AWS_SECRET_ACCESS_KEY=
+   AWS_REGION=
+   AWS_S3_BUCKET_NAME=
+   MONGODB_URI=
+   MONGODB_DB=
+   JWT_SECRET=
+   GOOGLE_CLIENT_ID=
+   GOOGLE_CLIENT_SECRET=
+   VITE_GOOGLE_CLIENT_ID=
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+The app runs locally at `http://localhost:3000` unless another port is configured by the runtime.
+
+## Build
+
+Create a production build with:
+
+```bash
+npm run build
+```
+
+## Deployment Notes
+
+Keep `.env` out of source control. Configure production environment variables through your hosting provider and make sure your Google OAuth client includes the deployed origin.

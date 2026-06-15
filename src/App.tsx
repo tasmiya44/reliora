@@ -1499,7 +1499,7 @@ const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, us
     setTimeout(() => authRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 50);
   };
 
-  const promptAuthForPreviewMutation = (message = DEMO_UPSELL_MESSAGE) => {
+  const showAuthForPreviewMutation = (message = DEMO_UPSELL_MESSAGE) => {
     showLandingRestrictionWarning(message);
     setTimeout(() => openAuth('login'), 120);
   };
@@ -1532,14 +1532,14 @@ const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, us
                   </p>
                   <div className="mt-6 flex flex-wrap gap-3">
                     <button
-                      onClick={() => promptAuthForPreviewMutation('Create your own gallery to upload and manage photos.')}
+                      onClick={() => showAuthForPreviewMutation('Create your own gallery to upload and manage photos.')}
                       className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 px-5 py-3 text-sm font-black text-white shadow-xl shadow-blue-500/20 transition-all hover:brightness-110 active:scale-95"
                     >
                       <Plus size={18} />
                       Upload Photos
                     </button>
                     <button
-                      onClick={() => promptAuthForPreviewMutation()}
+                      onClick={() => showAuthForPreviewMutation()}
                       className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-black/30 px-5 py-3 text-sm font-bold text-zinc-200 transition-all hover:bg-white/5"
                     >
                       <Box size={18} />
@@ -1610,21 +1610,21 @@ const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, us
                   className="flex flex-wrap items-center gap-2"
                 >
                   <button
-                    onClick={() => promptAuthForPreviewMutation()}
+                    onClick={() => showAuthForPreviewMutation()}
                     className="flex items-center justify-center gap-2 rounded-xl border border-blue-500/20 bg-blue-600/10 px-5 py-3 text-sm font-bold text-blue-500 transition-all hover:bg-blue-600 hover:text-white"
                   >
                     <FolderIcon size={18} />
                     Move
                   </button>
                   <button
-                    onClick={() => promptAuthForPreviewMutation()}
+                    onClick={() => showAuthForPreviewMutation()}
                     className="flex items-center justify-center gap-2 rounded-xl border border-red-500/20 bg-red-600/10 px-5 py-3 text-sm font-bold text-red-400 transition-all hover:bg-red-600 hover:text-white"
                   >
                     <Heart size={18} />
                     Favorite
                   </button>
                   <button
-                    onClick={() => promptAuthForPreviewMutation()}
+                    onClick={() => showAuthForPreviewMutation()}
                     className="flex items-center justify-center gap-2 rounded-xl border border-red-500/20 bg-red-600/10 px-5 py-3 text-sm font-bold text-red-500 transition-all hover:bg-red-600 hover:text-white"
                   >
                     <Trash2 size={18} />
@@ -1634,7 +1634,7 @@ const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, us
               ) : (
                 <>
                   <button
-                    onClick={() => promptAuthForPreviewMutation('Create your own gallery to upload and manage photos.')}
+                    onClick={() => showAuthForPreviewMutation('Create your own gallery to upload and manage photos.')}
                     className="flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-black text-black shadow-2xl shadow-white/10 transition-all hover:bg-zinc-200 active:scale-95"
                   >
                     <Plus size={18} />
@@ -1748,7 +1748,7 @@ const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, us
                 </div>
               ))}
               <button
-                onClick={() => promptAuthForPreviewMutation()}
+                onClick={() => showAuthForPreviewMutation()}
                 className="flex min-h-[148px] flex-col items-center justify-center rounded-2xl border border-dashed border-white/10 bg-white/[0.03] text-zinc-400 transition-all hover:border-blue-500/40 hover:text-white"
               >
                 <Plus size={26} />
@@ -1825,7 +1825,7 @@ const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, us
                       <button
                         onClick={() => {
                           setIsPreviewActionsMenuOpen(false);
-                          promptAuthForPreviewMutation();
+                          showAuthForPreviewMutation();
                         }}
                         className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-white"
                       >
@@ -1835,7 +1835,7 @@ const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, us
                       <button
                         onClick={() => {
                           setIsPreviewActionsMenuOpen(false);
-                          promptAuthForPreviewMutation();
+                          showAuthForPreviewMutation();
                         }}
                         className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm font-medium text-zinc-300 transition-colors hover:bg-white/5 hover:text-white"
                       >
@@ -1845,7 +1845,7 @@ const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, us
                       <button
                         onClick={() => {
                           setIsPreviewActionsMenuOpen(false);
-                          promptAuthForPreviewMutation();
+                          showAuthForPreviewMutation();
                         }}
                         className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm font-medium text-red-400 transition-colors hover:bg-red-500/10 hover:text-red-300"
                       >
@@ -1885,7 +1885,7 @@ const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, us
                     aria-label={photo.isFavorite ? `Remove ${photo.key} from favorites` : `Add ${photo.key} to favorites`}
                     onClick={(e) => {
                       e.stopPropagation();
-                      promptAuthForPreviewMutation();
+                      showAuthForPreviewMutation();
                     }}
                     className={cn(
                       "rounded-full p-2 backdrop-blur-md transition-all hover:scale-110",
@@ -1930,7 +1930,7 @@ const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, us
                       aria-label={`Delete ${photo.key}`}
                       onClick={(e) => {
                         e.stopPropagation();
-                        promptAuthForPreviewMutation();
+                        showAuthForPreviewMutation();
                       }}
                       className="rounded-lg bg-red-500/20 p-2 text-red-500 backdrop-blur-md transition-colors hover:bg-red-500 hover:text-white"
                     >
@@ -1988,7 +1988,7 @@ const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, us
                         return;
                       }
                       setPreviewCollectionMenu(null);
-                      promptAuthForPreviewMutation();
+                      showAuthForPreviewMutation();
                     }}
                     className={cn(
                       "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm hover:bg-white/5 hover:text-white",
@@ -2073,8 +2073,8 @@ const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, us
           setPreviewViewingPhoto(null);
           setPreviewEditingPhoto(photo);
         }}
-        onFavorite={() => promptAuthForPreviewMutation()}
-        onDelete={() => promptAuthForPreviewMutation()}
+        onFavorite={() => showAuthForPreviewMutation()}
+        onDelete={() => showAuthForPreviewMutation()}
       />
 
       <PhotoEditorModal

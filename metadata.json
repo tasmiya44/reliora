@@ -1,5 +1,5 @@
 {
-  "name": "Cloud Photo Gallery with AWS S3",
-  "description": "A full-stack cloud computing mini-project featuring React, Node.js, and AWS S3 for secure image storage and management.",
+  "name": "Reliora",
+  "description": "A full-stack photo gallery for storing, organizing, editing, and managing personal image collections.",
   "requestFramePermissions": []
 }
