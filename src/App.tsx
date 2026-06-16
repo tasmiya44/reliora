@@ -70,6 +70,33 @@ const DEMO_UPSELL_MESSAGE = 'Demo Mode: Please login or sign up to manage your o
 const APP_SHELL_CLASS = 'mx-auto w-full max-w-[2400px] px-6 sm:px-8 lg:px-10';
 const BRAND_NAME = 'Reliora';
 const BRAND_TAGLINE = 'Live moments. Relive memories.';
+const LANDING_DEMO_IMAGES = [
+  '/demo/pic1.webp',
+  '/demo/pic2.webp',
+  '/demo/pic3.webp',
+  '/demo/pic4.webp',
+  '/demo/pic5.webp',
+  '/demo/pic6.webp',
+  '/demo/pic7.webp',
+  '/demo/pic8.webp',
+  '/demo/pic9.webp',
+  '/demo/pic10.webp',
+  '/demo/pic11.webp',
+  '/demo/pic12.webp',
+];
+const LANDING_PREVIEW_FOLDERS = ['scenery', 'reezo', 'quotes', 'other'];
+const LANDING_PREVIEW_PHOTOS: Photo[] = LANDING_DEMO_IMAGES.map((src, index) => {
+  const folder = LANDING_PREVIEW_FOLDERS[index % LANDING_PREVIEW_FOLDERS.length];
+  return {
+    key: `${folder}/landing-${index + 1}.webp`,
+    url: src,
+    thumbUrl: src,
+    previewUrl: src,
+    size: 120 * 1024,
+    lastModified: new Date(Date.now() - index * 60 * 60 * 1000).toISOString(),
+    isFavorite: index === 2 || index === 7,
+  };
+});
 
 type AuthMode = 'login' | 'register';
 type GalleryView = 'gallery' | 'collections' | 'favorites' | 'recent' | 'trash';
@@ -1341,8 +1368,8 @@ const UploadModal = ({ isOpen, onClose, onUploadSuccess, availableFolders, photo
 };
 
 const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, user: UserSession) => void }) => {
-  const [previewPhotos, setPreviewPhotos] = useState<Photo[]>([]);
-  const [previewFolders, setPreviewFolders] = useState<string[]>(['scenery', 'reezo', 'other']);
+  const [previewPhotos, setPreviewPhotos] = useState<Photo[]>(LANDING_PREVIEW_PHOTOS);
+  const [previewFolders, setPreviewFolders] = useState<string[]>(LANDING_PREVIEW_FOLDERS);
   const [previewFolder, setPreviewFolder] = useState('all');
   const [previewActiveView, setPreviewActiveView] = useState<GalleryView>('gallery');
   const [authMode, setAuthMode] = useState<AuthMode>('login');
@@ -1354,25 +1381,35 @@ const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, us
   const [isPreviewActionsMenuOpen, setIsPreviewActionsMenuOpen] = useState(false);
   const [previewCollectionMenu, setPreviewCollectionMenu] = useState<{ x: number, y: number, folder: string } | null>(null);
   const [previewSidebarExpanded, setPreviewSidebarExpanded] = useState(false);
+  const [hasLoadedLivePreview, setHasLoadedLivePreview] = useState(false);
+  const [isLoadingLivePreview, setIsLoadingLivePreview] = useState(false);
   const galleryRef = React.useRef<HTMLDivElement | null>(null);
   const authRef = React.useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    let isMounted = true;
-    axios.get('/api/public/demo-preview')
-      .then(res => {
-        if (!isMounted) return;
-        setPreviewPhotos(res.data.photos || []);
-        setPreviewFolders(res.data.folders || []);
-      })
-      .catch(() => {
-        if (!isMounted) return;
-        setPreviewPhotos([]);
-      });
-    return () => {
-      isMounted = false;
-    };
+    LANDING_DEMO_IMAGES.forEach(src => {
+      const image = new Image();
+      image.decoding = 'async';
+      image.src = src;
+    });
   }, []);
+
+  const loadLiveDemoPreview = React.useCallback(async () => {
+    if (hasLoadedLivePreview || isLoadingLivePreview) return;
+    setIsLoadingLivePreview(true);
+    try {
+      const res = await axios.get('/api/public/demo-preview');
+      const nextPhotos = res.data.photos || [];
+      const nextFolders = res.data.folders || [];
+      if (nextPhotos.length > 0) setPreviewPhotos(nextPhotos);
+      if (nextFolders.length > 0) setPreviewFolders(nextFolders);
+      setHasLoadedLivePreview(true);
+    } catch {
+      setHasLoadedLivePreview(false);
+    } finally {
+      setIsLoadingLivePreview(false);
+    }
+  }, [hasLoadedLivePreview, isLoadingLivePreview]);
 
   useEffect(() => {
     if (sessionStorage.getItem('cloudgallery-open-auth') !== 'true') return;
@@ -1488,6 +1525,7 @@ const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, us
 
   const exploreGallery = () => {
     setLandingDismissed(true);
+    void loadLiveDemoPreview();
     requestAnimationFrame(() => {
       galleryRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1670,7 +1708,7 @@ const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, us
                     onClick={() => setPreviewViewingPhoto(photo)}
                     className="group relative h-32 w-56 shrink-0 overflow-hidden rounded-xl border border-white/10 bg-zinc-900 text-left"
                   >
-                    <img src={photo.thumbUrl} alt={photo.key} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" referrerPolicy="no-referrer" />
+                    <img src={photo.thumbUrl} alt={photo.key} loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" referrerPolicy="no-referrer" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                     <span className="absolute bottom-3 left-3 text-xs font-bold text-white">{formatRelativeTime(photo.lastModified)}</span>
                   </button>
@@ -1713,7 +1751,7 @@ const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, us
                 >
                   <div className="aspect-[1.45] overflow-hidden rounded-xl bg-zinc-900">
                     {collection.cover ? (
-                      <img src={collection.cover} alt="" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" referrerPolicy="no-referrer" />
+                      <img src={collection.cover} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" referrerPolicy="no-referrer" />
                     ) : (
                       <div className="flex h-full w-full items-center justify-center text-zinc-600">
                         <FolderIcon size={28} />
@@ -1784,6 +1822,8 @@ const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, us
                     <img
                       src={previewFolderThumbnails[folder]}
                       alt=""
+                      loading="lazy"
+                      decoding="async"
                       className="h-8 w-8 rounded-lg border border-white/10 object-cover"
                       referrerPolicy="no-referrer"
                     />
@@ -1910,6 +1950,8 @@ const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, us
                 <img
                   src={photo.thumbUrl}
                   alt={photo.key}
+                  loading={LANDING_DEMO_IMAGES.includes(photo.thumbUrl) ? "eager" : "lazy"}
+                  decoding="async"
                   referrerPolicy="no-referrer"
                   onClick={() => previewSelectedPhotos.length > 0 ? togglePreviewSelection(photo.key) : setPreviewViewingPhoto(photo)}
                   className="h-full w-full cursor-pointer object-cover transition-transform duration-500 group-hover:scale-110"
