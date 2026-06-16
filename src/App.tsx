@@ -830,27 +830,26 @@ const LoginForm = ({ onLoginSuccess, initialMode = 'login', onModeChange }: {
   const [demoLoading, setDemoLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState('');
-  const [authBackgroundPhotos, setAuthBackgroundPhotos] = useState<Photo[]>([]);
+  const authBackgroundPhotos = [
+  "/demo/pic1.webp",
+  "/demo/pic2.webp",
+  "/demo/pic5.webp",
+  "/demo/pic6.webp",
+  "/demo/pic7.webp",
+  "/demo/pic8.webp",
+  "/demo/pic9.webp",
+  "/demo/pic10.webp",
+  "/demo/pic11.webp",
+  "/demo/pic12.webp",
+  "/demo/pic13.webp",
+  "/demo/pic14.webp",
+  "/demo/pic15.webp",
+  "/demo/pic16.webp",
+  "/demo/pic17.webp",
+  "/demo/pic18.webp",
+  "/demo/pic19.webp",
+];
   const googleClientConfigured = Boolean((import.meta as any).env?.VITE_GOOGLE_CLIENT_ID);
-
-  useEffect(() => {
-    setMode(initialMode);
-  }, [initialMode]);
-
-  useEffect(() => {
-    let isMounted = true;
-    axios.get('/api/public/demo-preview')
-      .then(res => {
-        if (isMounted) setAuthBackgroundPhotos((res.data.photos || []).slice(0, 8));
-      })
-      .catch(() => {
-        if (isMounted) setAuthBackgroundPhotos([]);
-      });
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
   const updateMode = (nextMode: AuthMode) => {
     setError('');
     setMode(nextMode);
@@ -908,22 +907,23 @@ const LoginForm = ({ onLoginSuccess, initialMode = 'login', onModeChange }: {
     <div className="relative flex min-h-[calc(100vh-64px)] items-center justify-center overflow-hidden bg-[#050505] px-4 py-12">
       <div className="pointer-events-none absolute inset-0 opacity-[0.07] blur-[2px]">
         <div className="grid h-full grid-cols-2 gap-5 p-8 sm:grid-cols-4 lg:px-24">
-          {authBackgroundPhotos.map((photo, index) => (
-            <div
-              key={`auth-bg-${photo.key}`}
-              className={cn(
-                "overflow-hidden rounded-[2rem] bg-zinc-900 shadow-2xl shadow-black/60",
-                index % 3 === 0 ? "translate-y-10" : index % 3 === 1 ? "-translate-y-5" : "translate-y-2"
-              )}
-            >
-              <img
-                src={photo.thumbUrl}
-                alt=""
-                referrerPolicy="no-referrer"
-                className="h-full min-h-48 w-full object-cover"
-              />
-            </div>
-          ))}
+          {authBackgroundPhotos.map((photoSrc, index) => (
+  <div
+    key={`auth-bg-${index}`}
+    className={cn(
+      "overflow-hidden rounded-[2rem] bg-zinc-900 shadow-2xl shadow-black/60",
+      index % 3 === 0 ? "translate-y-10" : index % 3 === 1 ? "-translate-y-5" : "translate-y-2"
+    )}
+  >
+    <img
+      src={photoSrc}
+      alt=""
+      loading="lazy"
+      decoding="async"
+      className="h-full min-h-48 w-full object-cover"
+    />
+  </div>
+))}
         </div>
       </div>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.06),transparent_40%),linear-gradient(to_bottom,rgba(5,5,5,0.78),#050505_82%)]" />
