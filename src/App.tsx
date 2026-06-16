@@ -931,9 +931,9 @@ const LoginForm = ({ onLoginSuccess, initialMode = 'login', onModeChange }: {
   };
 
   return (
-    <div className="relative flex min-h-[calc(100vh-64px)] items-center justify-center overflow-hidden bg-[#050505] px-4 py-12">
+    <div className="relative flex min-h-[calc(100svh-96px)] w-full items-center justify-center overflow-hidden bg-[#050505] px-3 py-6 sm:px-5 sm:py-8">
       <div className="pointer-events-none absolute inset-0 opacity-[0.07] blur-[2px]">
-        <div className="grid h-full grid-cols-2 gap-5 p-8 sm:grid-cols-4 lg:px-24">
+        <div className="grid h-full grid-cols-2 gap-4 p-4 sm:grid-cols-4 lg:px-16">
           {authBackgroundPhotos.map((photoSrc, index) => (
   <div
     key={`auth-bg-${index}`}
@@ -957,15 +957,15 @@ const LoginForm = ({ onLoginSuccess, initialMode = 'login', onModeChange }: {
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative z-10 w-full max-w-xl space-y-8 rounded-[24px] border border-white/[0.08] bg-[rgba(15,15,15,0.85)] p-8 shadow-2xl shadow-black/60 backdrop-blur-xl transition-all duration-300 hover:border-blue-500/20 hover:shadow-blue-500/10 sm:p-10"
+        className="relative z-10 w-full max-w-md space-y-5 rounded-[24px] border border-white/[0.08] bg-[rgba(15,15,15,0.85)] p-5 shadow-2xl shadow-black/60 backdrop-blur-xl transition-all duration-300 hover:border-blue-500/20 hover:shadow-blue-500/10 sm:p-7"
       >
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-white">{mode === 'login' ? 'Sign In' : 'Create Account'}</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">{mode === 'login' ? 'Sign In' : 'Create Account'}</h2>
           <p className="mt-2 text-sm text-zinc-400">{mode === 'login' ? 'Access your Reliora gallery' : 'Start your private Reliora gallery'}</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="mt-8 space-y-5">
-          <div className="space-y-4">
+        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+          <div className="space-y-3.5">
             {mode === 'register' && (
               <>
                 <div>
@@ -977,7 +977,7 @@ const LoginForm = ({ onLoginSuccess, initialMode = 'login', onModeChange }: {
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="block h-14 w-full rounded-xl border border-white/10 bg-black/35 py-3 pl-12 pr-4 text-base text-white outline-none transition-all placeholder:text-zinc-600 focus:border-blue-500/60 focus:bg-black/55 focus:ring-4 focus:ring-blue-500/10"
+	                      className="block h-12 w-full rounded-xl border border-white/10 bg-black/35 py-3 pl-11 pr-4 text-sm text-white outline-none transition-all placeholder:text-zinc-600 focus:border-blue-500/60 focus:bg-black/55 focus:ring-4 focus:ring-blue-500/10"
                       placeholder="Full name"
                     />
                   </div>
@@ -991,7 +991,7 @@ const LoginForm = ({ onLoginSuccess, initialMode = 'login', onModeChange }: {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="block h-14 w-full rounded-xl border border-white/10 bg-black/35 py-3 pl-12 pr-4 text-base text-white outline-none transition-all placeholder:text-zinc-600 focus:border-blue-500/60 focus:bg-black/55 focus:ring-4 focus:ring-blue-500/10"
+	                      className="block h-12 w-full rounded-xl border border-white/10 bg-black/35 py-3 pl-11 pr-4 text-sm text-white outline-none transition-all placeholder:text-zinc-600 focus:border-blue-500/60 focus:bg-black/55 focus:ring-4 focus:ring-blue-500/10"
                       placeholder="you@example.com"
                     />
                   </div>
@@ -1007,7 +1007,7 @@ const LoginForm = ({ onLoginSuccess, initialMode = 'login', onModeChange }: {
                   required
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="block h-14 w-full rounded-xl border border-white/10 bg-black/35 py-3 pl-12 pr-4 text-base text-white outline-none transition-all placeholder:text-zinc-600 focus:border-blue-500/60 focus:bg-black/55 focus:ring-4 focus:ring-blue-500/10"
+	                  className="block h-12 w-full rounded-xl border border-white/10 bg-black/35 py-3 pl-11 pr-4 text-sm text-white outline-none transition-all placeholder:text-zinc-600 focus:border-blue-500/60 focus:bg-black/55 focus:ring-4 focus:ring-blue-500/10"
                   placeholder={mode === 'login' ? 'Username or email' : 'Username'}
                 />
               </div>
@@ -1021,7 +1021,7 @@ const LoginForm = ({ onLoginSuccess, initialMode = 'login', onModeChange }: {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block h-14 w-full rounded-xl border border-white/10 bg-black/35 py-3 pl-12 pr-12 text-base text-white outline-none transition-all placeholder:text-zinc-600 focus:border-blue-500/60 focus:bg-black/55 focus:ring-4 focus:ring-blue-500/10"
+	                  className="block h-12 w-full rounded-xl border border-white/10 bg-black/35 py-3 pl-11 pr-12 text-sm text-white outline-none transition-all placeholder:text-zinc-600 focus:border-blue-500/60 focus:bg-black/55 focus:ring-4 focus:ring-blue-500/10"
                   placeholder="Password"
                 />
                 <button
@@ -1044,7 +1044,7 @@ const LoginForm = ({ onLoginSuccess, initialMode = 'login', onModeChange }: {
                     required
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="block h-14 w-full rounded-xl border border-white/10 bg-black/35 py-3 pl-12 pr-12 text-base text-white outline-none transition-all placeholder:text-zinc-600 focus:border-blue-500/60 focus:bg-black/55 focus:ring-4 focus:ring-blue-500/10"
+	                    className="block h-12 w-full rounded-xl border border-white/10 bg-black/35 py-3 pl-11 pr-12 text-sm text-white outline-none transition-all placeholder:text-zinc-600 focus:border-blue-500/60 focus:bg-black/55 focus:ring-4 focus:ring-blue-500/10"
                     placeholder="Confirm password"
                   />
                   <button
@@ -1080,7 +1080,7 @@ const LoginForm = ({ onLoginSuccess, initialMode = 'login', onModeChange }: {
           <button
             type="submit"
             disabled={loading || googleLoading}
-            className="flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 via-blue-600 to-blue-500 text-sm font-black text-white shadow-xl shadow-blue-500/20 transition-all hover:brightness-110 focus:outline-none focus:ring-4 focus:ring-blue-500/20 active:scale-[0.99] disabled:opacity-50"
+	            className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 via-blue-600 to-blue-500 text-sm font-black text-white shadow-xl shadow-blue-500/20 transition-all hover:brightness-110 focus:outline-none focus:ring-4 focus:ring-blue-500/20 active:scale-[0.99] disabled:opacity-50"
           >
             {loading ? <Loader2 className="animate-spin" size={18} /> : (mode === 'login' ? 'Login' : 'Register')}
           </button>
@@ -1094,7 +1094,7 @@ const LoginForm = ({ onLoginSuccess, initialMode = 'login', onModeChange }: {
               if (!googleClientConfigured) setError('Google sign-in is not configured yet. Add VITE_GOOGLE_CLIENT_ID to your environment.');
             }}
             className={cn(
-              "relative flex h-14 w-full cursor-pointer items-center justify-center gap-3 overflow-hidden rounded-xl border border-white/10 bg-white/[0.035] text-sm font-semibold text-white transition-all hover:border-white/20 hover:bg-white/[0.06]",
+	              "relative flex h-12 w-full cursor-pointer items-center justify-center gap-3 overflow-hidden rounded-xl border border-white/10 bg-white/[0.035] text-sm font-semibold text-white transition-all hover:border-white/20 hover:bg-white/[0.06]",
               googleLoading && "pointer-events-none opacity-60"
             )}
           >
@@ -1117,7 +1117,7 @@ const LoginForm = ({ onLoginSuccess, initialMode = 'login', onModeChange }: {
             type="button"
             onClick={handleDemoLogin}
             disabled={demoLoading || loading || googleLoading}
-            className="flex h-14 w-full items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/[0.025] text-sm font-semibold text-zinc-200 transition-all hover:border-blue-500/30 hover:bg-blue-500/10 hover:text-white disabled:opacity-50"
+	            className="flex h-12 w-full items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/[0.025] text-sm font-semibold text-zinc-200 transition-all hover:border-blue-500/30 hover:bg-blue-500/10 hover:text-white disabled:opacity-50"
           >
             {demoLoading ? <Loader2 className="animate-spin" size={18} /> : <><Sparkles size={17} /> Try Demo</>}
           </button>
@@ -2104,7 +2104,7 @@ const LandingOverlay = ({ onLoginSuccess }: { onLoginSuccess: (token: string, us
         </AnimatePresence>
       </section>
 
-      <section ref={authRef} className={cn(APP_SHELL_CLASS, "pt-20")}>
+      <section ref={authRef} className={cn(APP_SHELL_CLASS, "pt-8 lg:pl-[116px]")}>
         <LoginForm onLoginSuccess={onLoginSuccess} initialMode={authMode} onModeChange={setAuthMode} />
       </section>
 

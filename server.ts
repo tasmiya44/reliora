@@ -156,6 +156,8 @@ const isDemoUser = (req: AuthedRequest) => req.user.role === 'demo';
 const ownerPrefix = (user: AuthUser) => user.role === 'demo' ? 'demo' : `users/${user.id}`;
 const publicUser = (user: UserDoc) => ({ id: user._id, name: user.name, username: user.username, email: user.email, role: user.role, avatar: user.avatar, provider: user.provider });
 const wantsDemoManagement = (req: Request) => req.headers['x-manage-demo'] === 'true';
+const configuredAdminUsername = () => (process.env.ADMIN_USERNAME || 'TaShi').trim() || 'TaShi';
+const configuredAdminPassword = () => process.env.ADMIN_PASSWORD || 'tashi';
 const configuredAdminEmail = () => (process.env.ADMIN_EMAIL || '').trim().toLowerCase();
 const isInvalidDemoObjectKey = (key: string) => key.startsWith('users/undefined/');
 const visibleFolderNamesForOwner = (folders: FolderDoc[], owner: AuthUser) => {
@@ -244,23 +246,30 @@ class JsonMetadataStore implements MetadataStore {
 
   async ensureSeedData() {
     const db = await this.read();
-    const adminUsername = process.env.ADMIN_USERNAME || 'TaShi';
-    const adminPassword = process.env.ADMIN_PASSWORD || 'tashi';
+    const adminUsername = configuredAdminUsername();
+    const adminEmail = configuredAdminEmail();
+    const seededAdminEmail = `${adminUsername.toLowerCase()}@reliora.local`;
+    let seededAdmin = db.users.find(u => u._id === 'admin') || null;
 
-    if (!db.users.some(u => u.role === 'admin')) {
-      const passwordHash = await hashPassword(adminPassword);
-      db.users.push({
+    if (!seededAdmin) {
+      seededAdmin = {
         _id: 'admin',
-        name: 'CloudGallery Admin',
-        email: `${adminUsername.toLowerCase()}@cloudgallery.local`,
+        name: 'Reliora Admin',
+        email: seededAdminEmail,
         username: adminUsername,
-        passwordHash,
+        passwordHash: await hashPassword(configuredAdminPassword()),
         role: 'admin',
         createdAt: now(),
-      });
+      };
+      db.users.push(seededAdmin);
+    } else {
+      seededAdmin.name = seededAdmin.name || 'Reliora Admin';
+      seededAdmin.email = !seededAdmin.email || seededAdmin.email.endsWith('@cloudgallery.local') ? seededAdminEmail : seededAdmin.email;
+      seededAdmin.username = adminUsername;
+      seededAdmin.passwordHash = await hashPassword(configuredAdminPassword());
+      seededAdmin.role = 'admin';
     }
 
-    const adminEmail = configuredAdminEmail();
     if (adminEmail) {
       const existingAdminUser = db.users.find(u => u.email.toLowerCase() === adminEmail);
       if (existingAdminUser) existingAdminUser.role = 'admin';
@@ -524,18 +533,22 @@ class MongoMetadataStore implements MetadataStore {
       this.photos.createIndex({ userId: 1, folderId: 1 }),
       this.favorites.createIndex({ userId: 1, photoId: 1 }, { unique: true }),
     ]);
-    const adminUsername = process.env.ADMIN_USERNAME || 'TaShi';
-    if (!await this.users.findOne({ role: 'admin' })) {
-      await this.users.insertOne({
-        _id: 'admin',
-        name: 'CloudGallery Admin',
-        email: `${adminUsername.toLowerCase()}@cloudgallery.local`,
-        username: adminUsername,
-        passwordHash: await hashPassword(process.env.ADMIN_PASSWORD || 'tashi'),
-        role: 'admin',
-        createdAt: now(),
-      });
-    }
+    const adminUsername = configuredAdminUsername();
+    const seededAdminEmail = `${adminUsername.toLowerCase()}@reliora.local`;
+    await this.users.updateOne(
+      { _id: 'admin' },
+      {
+        $set: {
+          name: 'Reliora Admin',
+          email: seededAdminEmail,
+          username: adminUsername,
+          passwordHash: await hashPassword(configuredAdminPassword()),
+          role: 'admin',
+        },
+        $setOnInsert: { createdAt: now() },
+      },
+      { upsert: true }
+    );
     const adminEmail = configuredAdminEmail();
     if (adminEmail) {
       await this.users.updateOne({ email: adminEmail }, { $set: { role: 'admin' } });
@@ -756,9 +769,21 @@ async function getStore(): Promise<MetadataStore> {
         const { MongoClient } = await importer('mongodb');
         const client = new MongoClient(process.env.MONGODB_URI);
         await client.connect();
-        const store = new MongoMetadataStore(client.db(process.env.MONGODB_DB || 'cloudgallery'));
+        const configuredDbName = process.env.MONGODB_DB || 'cloudgallery';
+        let db = client.db(configuredDbName);
+        if (configuredDbName !== 'cloudgallery') {
+          const [configuredUserCount, legacyUserCount] = await Promise.all([
+            db.collection('users').countDocuments(),
+            client.db('cloudgallery').collection('users').countDocuments(),
+          ]);
+          if (configuredUserCount === 0 && legacyUserCount > 0) {
+            console.warn(`MongoDB database "${configuredDbName}" has no users; using existing "cloudgallery" database to preserve accounts and gallery data.`);
+            db = client.db('cloudgallery');
+          }
+        }
+        const store = new MongoMetadataStore(db);
         await store.ensureSeedData();
-        console.log('MongoDB connected for CloudGallery metadata.');
+        console.log(`MongoDB connected for Reliora metadata using database "${db.databaseName}".`);
         return store;
       } catch (err) {
         console.warn('MongoDB driver/connection unavailable; using local metadata fallback.', err);
